@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+tit=sns.load_dataset('titanic')
+tit['age'].fillna(tit['age'].median(),inplace=True)
+tit['embarked'].fillna(tit['embarked'].mode()[0],inplace=True)
+sns.countplot(x='survived',data=tit)
+plt.title("Total Survivors vs Non-Survivors")
+plt.show()
+sns.countplot(x="sex", hue="survived", data=tit)
+plt.title("Survival Count by Gender")
+plt.show()
+sns.boxplot(x="survived", y="age", data=tit)
+plt.title("Age Distribution by Survival")
+plt.show()
+sns.violinplot(x="pclass", y="fare", data=tit)
+plt.title("Fare Distribution by Passenger Class")
+plt.show()
+sns.countplot(x="embarked", hue="survived", data=tit)
+plt.title("Survival by Port of Embarkation")
+plt.show()
+sns.heatmap(tit.select_dtypes(include=['number']).corr(), annot=True)
+plt.title("Correlation Heatmap of Titanic Features")
+plt.show()
